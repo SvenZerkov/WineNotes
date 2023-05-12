@@ -3,7 +3,8 @@ const Wine = require('../models/Wine');
 const { validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
 
-const getAll = async (req,res,next) => {
+/* GET ALL */
+const getAll = async (req, res, next) => {
     try {
         const wines = await Wine.find();
         console.log(wines);
@@ -15,6 +16,22 @@ const getAll = async (req,res,next) => {
     }
 };
 
+/* GET ONE */
+const getWine = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const wine = await Wine.findById(id);
+        res.json(wine);
+    } catch (error) {
+        res.status(404).json({
+            msg: "Not Found",
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
-    getAll
+    getAll,
+    getWine
 }

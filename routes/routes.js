@@ -1,11 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
-const { getAll } = require('../controllers/controller');
+const { validateID } = require("../middlewares/validatorID");
 
-const noteController = require("../controllers/controller.js");
+const wineController = require("../controllers/controller.js");
 
-// get all
-router.get("/api/wines", noteController.getAll);
+// get all wines
+router.get("/api/wines", wineController.getAll);
+
+
+// get one wine
+router.get("/api/wines/(:id)", [
+    check("id")
+        .trim()
+        .notEmpty()
+        .custom(validateID)
+        
+], wineController.getWine);
+
 
 module.exports = router;
