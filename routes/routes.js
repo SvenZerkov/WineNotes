@@ -14,7 +14,7 @@ router.get("/api/wines", wineController.getAll);
 
 
 // get one wine
-router.get("/api/wines/(:id)", [
+router.get("/api/wines/:id", [
     check("id")
         .trim()
         .notEmpty()
