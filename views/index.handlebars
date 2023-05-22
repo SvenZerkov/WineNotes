@@ -2,5 +2,33 @@
 <div class="container">
     {{#if desc}}
     <p class="text-center">{{desc}}</p>
+    {{else}}
+    <p>Description manually here</p>
     {{/if}}
+
+    <div class="wine-container">
+        {{#each wines}}
+
+        <article class="card" tabindex="0">
+            <div class="card-image">
+                {{!-- CARD IMAGE HERE --}}
+            </div>
+
+            <div class="card-header">
+                <h3>{{wine_name}}</h3>
+            </div>
+
+            <div class="card-body">
+                <p><strong>Producer: </strong>{{producer_name}}</p>
+                <p><strong>Country: </strong>{{country}}</p>
+            </div>
+        </article>
+
+        {{/each}}
+        
+    </div>
+
+
+
+
 </div>

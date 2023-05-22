@@ -4,23 +4,29 @@ const { validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
 
 const getFirstPage = async (req, res, next) => {
-    res.render("index",
-        {
+    try {
+        const wines = await getAll(req, res, next);
+        res.render("index", {
             pagetitle: "Wine notes",
-            desc: "Here is some notes from extraordinary wines."
+            desc: "Here are some notes from extraordinary wines.",
+            wines: wines.map(wine => wine.toJSON())
         });
+    } catch (error) {
+        res.status(500).json({
+            msg: "ISE",
+            error: error.message
+        });
+    }
 };
 
+
 /* GET ALL */
-const getAll = async (req, res, next) => {
+const getAll = async () => {
     try {
         const wines = await Wine.find();
-        // console.log(wines);
-        res.json(wines);
+        return wines;
     } catch (error) {
-        res.status(404).json({
-            msg: "not found"
-        })
+        throw error;
     }
 };
 
