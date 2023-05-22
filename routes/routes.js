@@ -5,6 +5,10 @@ const { validateID } = require("../middlewares/validatorID");
 
 const wineController = require("../controllers/controller.js");
 
+// front page
+router.get("/", wineController.getFirstPage);
+
+
 // get all wines
 router.get("/api/wines", wineController.getAll);
 

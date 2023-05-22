@@ -14,19 +14,21 @@ const ObjectId = mongoose.Types.ObjectId;
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("", require("./routes/routes.js"));
+
 app.engine("handlebars", exhbs.engine({
     defaultLayout: "main",
     partialsDir: path.join(__dirname, "views/partials")
 }));
 app.use(express.json());
-app.set("view-engine", "handlebars");
+app.set("view engine", "handlebars");
 
 const routes = require("./routes/routes");
 
+app.use("", require("./routes/routes.js"));
+
 const dbURI = process.env.dbURI;
 
-const client = new MongoClient(dbURI, {useNewUrlParser: true });
+const client = new MongoClient(dbURI, { useNewUrlParser: true });
 
 const connectToDB = async () => {
     try {

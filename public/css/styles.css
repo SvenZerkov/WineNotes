@@ -1,0 +1,12 @@
+/* Footer styles */
+
+footer {
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
