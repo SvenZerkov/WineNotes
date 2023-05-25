@@ -10,9 +10,14 @@
     <div class="wine-container">
         {{#each wines}}
 
-        <article class="card" tabindex="0">
+        <section class="card" tabindex="0">
             <div class="card-image">
                 {{!-- CARD IMAGE HERE --}}
+                <script>
+                    var pictureName = "{{picture_name}}";
+                    console.log("Picture Name:", pictureName);
+                </script>
+                <img src="/images/{{picture_name}}" alt="Wine picture">
             </div>
 
             <div class="card-header">
@@ -23,7 +28,7 @@
                 <p><strong>Producer: </strong>{{producer_name}}</p>
                 <p><strong>Country: </strong>{{country}}</p>
             </div>
-        </article>
+        </section>
 
         {{/each}}
 
